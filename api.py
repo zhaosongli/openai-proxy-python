@@ -17,12 +17,7 @@ def do_echo():
 
 @app.post("/v1/completions")
 async def do_proxy_chat(request: dict, authorization: Optional[str] = Header(None)):
-    # if (authorization == None):
-    #     raise HTTPException(status_code=401, detail="OPENAI_API_KEY is required.")
-    
     try:
-        # openai.api_key = authorization.replace("Bearer", "").strip()
-        # completion = openai.ChatCompletion.create(model=request['model'], messages=request['messages'])
         openai.api_key = os.environ.get("OPENAI_API_KEY")  # 从环境变量中读取API_KEY
 
         completions = openai.Completion.create(
@@ -41,13 +36,10 @@ async def do_proxy_chat(request: dict, authorization: Optional[str] = Header(Non
         logging.error(e)
         raise HTTPException(status_code=500, detail="")
 
+
 @app.post("/v1/chat/completions")
 async def do_proxy_chat(request: dict, authorization: Optional[str] = Header(None)):
-    # if (authorization == None):
-    #     raise HTTPException(status_code=401, detail="OPENAI_API_KEY is required.")
-    
     try:
-        # completion = openai.ChatCompletion.create(model=request['model'], messages=request['messages'])
         openai.api_key = os.environ.get("OPENAI_API_KEY")  # 从环境变量中读取API_KEY
 
         completions = openai.ChatCompletion.create(
