@@ -52,7 +52,12 @@ async def do_proxy_chat(request: dict, authorization: Optional[str] = Header(Non
             presence_penalty=0,
         )
 
-        completion = completions.choices[0].message.content
+        # completion = completions.choices[0].message.content
+
+        completion = ""
+
+        for choice in completions.choices:
+            completion = completion + "\n" + completions.choices[0].message.content
 
         return resp_200(data=completion)
     except Exception as e:

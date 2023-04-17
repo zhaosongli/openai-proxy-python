@@ -7,7 +7,7 @@ import json
 args = sys.argv
 prompt = args[1]
 
-url = 'http://54.174.76.90:8000/v1/chat/completions'
+url = 'http://54.174.76.96:8000/v1/chat/completions'
 
 data = {
     "model": "gpt-3.5-turbo",
